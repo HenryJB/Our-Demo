@@ -90,16 +90,17 @@ use yii\helpers\Html;
       <div class="container">
         <h2 class="tittle">New Arrivals</h2>
         <div class="arrivals-grids">
-          <div class="col-md-3 arrival-grid simpleCart_shelfItem">
+          <?php foreach($products as $product): ?>
+            <div class="col-md-3 arrival-grid simpleCart_shelfItem">
             <div class="grid-arr">
               <div  class="grid-arrival">
                 <figure>
                   <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal1">
                     <div class="grid-img">
-                        <?php echo Html::img('@web/images/p6.jpg', $options=['class'=> 'img-responsive']) ?>
+                        <?php echo Html::img('@web/images/'.$product->imageUrl, $options=['class'=> 'img-responsive']) ?>
                     </div>
                     <div class="grid-img">
-                        <?php echo Html::img('@web/images/p5.jpg', $options=['class'=> 'img-responsive']) ?>
+                        <?php echo Html::img('@web/images/'.$product->imageUrl2, $options=['class'=> 'img-responsive']) ?>
                     </div>
                   </a>
                 </figure>
@@ -117,95 +118,41 @@ use yii\helpers\Html;
                 <h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
                 <span class="size">XL / XXL / S </span>
                 <p ><del>$100.00</del><em class="item_price">$70.00</em></p>
-                <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
+                
+                <button type="button" class="my-cart-b item_add" data-toggle="modal" 
+                data-target='#myModal<?= $product->id; ?>'>
+                  Add To Cart
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal<?= $product->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel"><?= $product->name; ?></h4>
+                    </div>
+                    <div class="modal-body">
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-3 arrival-grid simpleCart_shelfItem">
-            <div class="grid-arr">
-              <div  class="grid-arrival">
-                <figure>
-                  <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal2">
-                    <div class="grid-img">
-                        <?php echo Html::img('@web/images/p7.jpg', $options=['class'=> 'img-responsive']) ?>
-                    </div>
-                    <div class="grid-img">
-                        <?php echo Html::img('@web/images/p8.jpg', $options=['class'=> 'img-responsive']) ?>
-                    </div>
-                  </a>
-                </figure>
-              </div>
-              <div class="ribben2">
-                <p>OUT OF STOCK</p>
-              </div>
-              <div class="block">
-                <div class="starbox small ghosting"> </div>
-              </div>
-              <div class="women">
-                <h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
-                <span class="size">XL / XXL / S </span>
-                <p ><del>$100.00</del><em class="item_price">$70.00</em></p>
-                <a href="#" data-text="Add To Cart" class=" my-cart-b item_add">Add To Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 arrival-grid simpleCart_shelfItem">
-            <div class="grid-arr">
-              <div  class="grid-arrival">
-                <figure>
-                  <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal3">
-                    <div class="grid-img">
-                        <?php echo Html::img('@web/images/p10.jpg', $options=['class'=> 'img-responsive']) ?>
-                    </div>
-                    <div class="grid-img">
-                        <?php echo Html::img('@web/images/p9.jpg', $options=['class'=> 'img-responsive']) ?>
-                    </div>
-                  </a>
-                </figure>
-              </div>
-              <div class="ribben1">
-                <p>SALE</p>
-              </div>
-              <div class="block">
-                <div class="starbox small ghosting"> </div>
-              </div>
-              <div class="women">
-                <h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
-                <span class="size">XL / XXL / S </span>
-                <p ><del>$100.00</del><em class="item_price">$70.00</em></p>
-                <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 arrival-grid simpleCart_shelfItem">
-            <div class="grid-arr">
-              <div  class="grid-arrival">
-                <figure>
-                  <a href="#" class="new-gri" data-toggle="modal" data-target="#myModal4">
-                    <div class="grid-img">
-                        <?php echo Html::img('@web/images/p11.jpg', $options=['class'=> 'img-responsive']) ?>
-                    </div>
-                    <div class="grid-img">
-                        <?php echo Html::img('@web/images/p12.jpg', $options=['class'=> 'img-responsive']) ?>
-                    </div>
-                  </a>
-                </figure>
-              </div>
-              <div class="block">
-                <div class="starbox small ghosting"> </div>
-              </div>
-              <div class="women">
-                <h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
-                <span class="size">XL / XXL / S </span>
-                <p ><del>$100.00</del><em class="item_price">$70.00</em></p>
-                <a href="#" data-text="Add To Cart" class="my-cart-b item_add">Add To Cart</a>
-              </div>
-            </div>
-          </div>
+          <?php endforeach; ?>
           <div class="clearfix"></div>
         </div>
       </div>
     </div>
+
+    <!-- Button trigger modal -->
+
   <!--new-arrivals-->
     <!--accessories-->
   <div class="accessories-w3l">

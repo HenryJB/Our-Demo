@@ -9,7 +9,7 @@ class ProductsController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-      $categories = Category::find()->all();
+        $categories = Category::find()->all();
         return $this->render('index',['categories' => $categories]);
     }
 
